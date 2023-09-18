@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Upmind\ProvisionProviders\AutoLogin\Exceptions;
+namespace Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions;
 
 use InvalidArgumentException;
 

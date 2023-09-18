@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Upmind\ProvisionProviders\AutoLogin\Providers\Marketgoo\Data;
+namespace Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Data;
 
 use Upmind\ProvisionBase\Provider\DataSet\DataSet;
 use Upmind\ProvisionBase\Provider\DataSet\Rules;

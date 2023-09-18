@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Upmind\ProvisionProviders\AutoLogin\Providers\Marketgoo\ResponseHandlers;
+namespace Upmind\ProvisionProviders\Seo\Providers\Marketgoo\ResponseHandlers;
 
-use Upmind\ProvisionProviders\AutoLogin\Exceptions\CannotParseResponse;
-use Upmind\ProvisionProviders\AutoLogin\Exceptions\OperationFailed;
+use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\CannotParseResponse;
+use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed;
 
 /**
  * Handler to parse the 'Create account' result from from a PSR-7 response body.

@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Upmind\ProvisionProviders\AutoLogin\Providers\Marketgoo\ResponseHandlers;
+namespace Upmind\ProvisionProviders\Seo\Providers\Marketgoo\ResponseHandlers;
 
 use Psr\Http\Message\ResponseInterface;
-use Upmind\ProvisionProviders\AutoLogin\Exceptions\CannotParseResponse;
-use Upmind\ProvisionProviders\AutoLogin\Exceptions\OperationFailed;
-use Upmind\ProvisionProviders\AutoLogin\ResponseHandlers\AbstractHandler;
+use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\CannotParseResponse;
+use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed;
 
 /**
  * Handler to parse Marketgoo data from a PSR-7 response body.

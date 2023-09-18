@@ -2,24 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Upmind\ProvisionProviders\AutoLogin;
+namespace Upmind\ProvisionProviders\Seo;
 
 use Upmind\ProvisionBase\Laravel\ProvisionServiceProvider;
-use Upmind\ProvisionProviders\AutoLogin\Providers\Example\Provider as ExampleProvider;
-use Upmind\ProvisionProviders\AutoLogin\Providers\Generic\Provider as GenericProvider;
-use Upmind\ProvisionProviders\AutoLogin\Providers\Marketgoo\Provider as MarketgooProvider;
-use Upmind\ProvisionProviders\AutoLogin\Providers\SpamExperts\Provider as SpamExpertsProvider;
+use Upmind\ProvisionProviders\Seo\Providers\Example\Provider as ExampleProvider;
+use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Provider as MarketgooProvider;
 
 class LaravelServiceProvider extends ProvisionServiceProvider
 {
     public function boot()
     {
-        $this->bindCategory('auto-login', Category::class);
+        $this->bindCategory('seo', Category::class);
 
-        // $this->bindProvider('auto-login', 'example', ExampleProvider::class);
+        // $this->bindProvider('seo', 'example', ExampleProvider::class);
 
-        $this->bindProvider('auto-login', 'generic', GenericProvider::class);
-        $this->bindProvider('auto-login', 'spam-experts', SpamExpertsProvider::class);
-        $this->bindProvider('auto-login', 'marketgoo', MarketgooProvider::class);
+        $this->bindProvider('seo', 'marketgoo', MarketgooProvider::class);
     }
 }

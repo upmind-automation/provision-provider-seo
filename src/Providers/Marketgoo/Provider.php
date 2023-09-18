@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Upmind\ProvisionProviders\AutoLogin\Providers\Marketgoo;
+namespace Upmind\ProvisionProviders\Seo\Providers\Marketgoo;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Str;
 use Upmind\ProvisionBase\Helper;
-use Upmind\ProvisionProviders\AutoLogin\Category;
+use Upmind\ProvisionProviders\Seo\Category;
 use Upmind\ProvisionBase\Provider\Contract\ProviderInterface;
 use Upmind\ProvisionBase\Provider\DataSet\AboutData;
-use Upmind\ProvisionProviders\AutoLogin\Data\CreateParams;
-use Upmind\ProvisionProviders\AutoLogin\Data\CreateResult;
-use Upmind\ProvisionProviders\AutoLogin\Data\EmptyResult;
-use Upmind\ProvisionProviders\AutoLogin\Data\LoginResult;
-use Upmind\ProvisionProviders\AutoLogin\Data\AccountIdentifierParams;
-use Upmind\ProvisionProviders\AutoLogin\Providers\Marketgoo\Data\Configuration;
-use Upmind\ProvisionProviders\AutoLogin\Providers\Marketgoo\ResponseHandlers\CreateAccountResponseHandler;
-use Upmind\ProvisionProviders\AutoLogin\Providers\Marketgoo\ResponseHandlers\ResponseHandler;
-use Upmind\ProvisionProviders\AutoLogin\Providers\Marketgoo\ResponseHandlers\LoginResponseHandler;
+use Upmind\ProvisionProviders\Seo\Data\CreateParams;
+use Upmind\ProvisionProviders\Seo\Data\CreateResult;
+use Upmind\ProvisionProviders\Seo\Data\EmptyResult;
+use Upmind\ProvisionProviders\Seo\Data\LoginResult;
+use Upmind\ProvisionProviders\Seo\Data\AccountIdentifierParams;
+use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Data\Configuration;
+use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\ResponseHandlers\CreateAccountResponseHandler;
+use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\ResponseHandlers\ResponseHandler;
+use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\ResponseHandlers\LoginResponseHandler;
 
 class Provider extends Category implements ProviderInterface
 {

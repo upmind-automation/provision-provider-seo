@@ -1,8 +1,8 @@
-# [Upmind Provision Providers](https://github.com/upmind-automation) - Auto Login
+# [Upmind Provision Providers](https://github.com/upmind-automation) - SEO
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/upmind/provision-provider-auto-login.svg?style=flat-square)](https://packagist.org/packages/upmind/provision-provider-auto-login)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/upmind/provision-provider-seo.svg?style=flat-square)](https://packagist.org/packages/upmind/provision-provider-seo)
 
-This provision category contains functions to facilitate basic online service account creation/management including an automatic login feature.
+This provision category defines functions to create and manage SEO service accounts.
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -18,7 +18,7 @@ This provision category contains functions to facilitate basic online service ac
 ## Installation
 
 ```bash
-composer require upmind/provision-provider-auto-login
+composer require upmind/provision-provider-seo
 ```
 
 ## Usage
@@ -36,8 +36,6 @@ Alternatively you can start using it for your business immediately with [Upmind.
 ## Supported Providers
 
 The following providers are currently implemented:
-  - Generic (a generic highly configurable provider)
-  - [SpamExperts](https://api.antispamcloud.com/api/help.php)
   - [marketgoo](https://marketgoo.docs.apiary.io/)
 
 ## Functions

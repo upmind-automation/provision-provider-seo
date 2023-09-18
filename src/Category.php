@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Upmind\ProvisionProviders\AutoLogin;
+namespace Upmind\ProvisionProviders\Seo;
 
 use Upmind\ProvisionBase\Provider\BaseCategory;
 use Upmind\ProvisionBase\Provider\DataSet\AboutData;
-use Upmind\ProvisionProviders\AutoLogin\Data\AccountIdentifierParams;
-use Upmind\ProvisionProviders\AutoLogin\Data\CreateParams;
-use Upmind\ProvisionProviders\AutoLogin\Data\CreateResult;
-use Upmind\ProvisionProviders\AutoLogin\Data\EmptyResult;
-use Upmind\ProvisionProviders\AutoLogin\Data\LoginResult;
+use Upmind\ProvisionProviders\Seo\Data\AccountIdentifierParams;
+use Upmind\ProvisionProviders\Seo\Data\CreateParams;
+use Upmind\ProvisionProviders\Seo\Data\CreateResult;
+use Upmind\ProvisionProviders\Seo\Data\EmptyResult;
+use Upmind\ProvisionProviders\Seo\Data\LoginResult;
 
 /**
  * This provision category contains functions to facilitate basic online service
@@ -21,9 +21,9 @@ abstract class Category extends BaseCategory
     public static function aboutCategory(): AboutData
     {
         return AboutData::create()
-            ->setName('Auto Login')
-            ->setDescription('Basic provision category which provides auto-login to compatible services')
-            ->setIcon('key');
+            ->setName('SEO')
+            ->setDescription('Provisioning category + providers for creating and logging into SEO services')
+            ->setIcon('chart-line');
     }
 
     /**
