@@ -17,6 +17,7 @@ use Upmind\ProvisionProviders\Seo\Data\EmptyResult;
 use Upmind\ProvisionProviders\Seo\Data\LoginResult;
 use Upmind\ProvisionProviders\Seo\Data\AccountIdentifierParams;
 use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Data\Configuration;
+use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed;
 use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\ResponseHandlers\CreateAccountResponseHandler;
 use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\ResponseHandlers\ResponseHandler;
 use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\ResponseHandlers\LoginResponseHandler;
@@ -67,13 +68,31 @@ class Provider extends Category implements ProviderInterface
 
     public function suspend(AccountIdentifierParams $params): EmptyResult
     {
-        $this->suspendAccount($params->username);
+        try {
+            $this->suspendAccount($params->username);
+        } catch (OperationFailed $e) {
+            if (Str::contains($e->getMessage(), 'already suspended')) {
+                return EmptyResult::create()->setMessage('Account already suspended');
+            }
+
+            throw $e;
+        }
+
         return EmptyResult::create()->setMessage('Account suspended');
     }
 
     public function unsuspend(AccountIdentifierParams $params): EmptyResult
     {
-        $this->resumeAccount($params->username);
+        try {
+            $this->resumeAccount($params->username);
+        } catch (OperationFailed $e) {
+            if (Str::contains($e->getMessage(), 'not suspended')) {
+                return EmptyResult::create()->setMessage('Account already unsuspended');
+            }
+
+            throw $e;
+        }
+
         return EmptyResult::create()->setMessage('Account unsuspended');
     }
 
