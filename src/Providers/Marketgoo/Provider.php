@@ -43,9 +43,9 @@ class Provider extends Category implements ProviderInterface
 
     public function create(CreateParams $params): CreateResult
     {
-        $domainName = $params->service_identifier;
+        $domainName = $params->domain;
         $productKey = $params->package_identifier;
-        $email = $params->email;
+        $email = $params->customer_email;
         $name = $params->customer_name ?: substr($email, 0, strrpos($email, '@'));
         $promoCode = is_array($params->promo_codes)
             ? head($params->promo_codes)
@@ -55,7 +55,7 @@ class Provider extends Category implements ProviderInterface
 
         return CreateResult::create()
             ->setUsername($accountId)
-            ->setServiceIdentifier($domainName)
+            ->setDomain($domainName)
             ->setPackageIdentifier($productKey)
             ->setMessage('Account created');
     }

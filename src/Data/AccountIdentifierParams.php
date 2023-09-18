@@ -9,7 +9,7 @@ use Upmind\ProvisionBase\Provider\DataSet\Rules;
 
 /**
  * @property-read mixed $username Username or other unique service identifier
- * @property-read string|null $service_identifier Secondary service identifier, if any
+ * @property-read string $domain Domain name the account is for
  * @property-read array|null $extra Extra data, if any
  */
 class AccountIdentifierParams extends DataSet
@@ -18,7 +18,7 @@ class AccountIdentifierParams extends DataSet
     {
         return new Rules([
             'username' => ['required'],
-            'service_identifier' => ['nullable', 'string'],
+            'domain' => ['required', 'string'],
             'extra' => ['nullable', 'array'],
         ]);
     }

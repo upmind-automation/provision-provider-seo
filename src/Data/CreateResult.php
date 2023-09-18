@@ -10,7 +10,7 @@ use Upmind\ProvisionBase\Provider\DataSet\Rules;
 
 /**
  * @property-read mixed $username Username or other unique service identifier
- * @property-read string|null $service_identifier Secondary service identifier, if any
+ * @property-read string $domain Domain name the account is for
  * @property-read string|null $package_identifier Service package identifier, if any
  */
 class CreateResult extends ResultData
@@ -18,8 +18,8 @@ class CreateResult extends ResultData
     public static function rules(): Rules
     {
         return new Rules([
-            'username' => ['filled'],
-            'service_identifier' => ['nullable', 'string'],
+            'username' => ['required'],
+            'domain' => ['required', 'string'],
             'package_identifier' => ['nullable', 'string'],
         ]);
     }
@@ -34,11 +34,11 @@ class CreateResult extends ResultData
     }
 
     /**
-     * Set the result secondary service identifier.
+     * Set the account domain name.
      */
-    public function setServiceIdentifier(?string $serviceIdentifier): self
+    public function setDomain(?string $domain): self
     {
-        $this->setValue('service_identifier', $serviceIdentifier);
+        $this->setValue('domain', $domain);
         return $this;
     }
 
