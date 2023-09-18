@@ -23,7 +23,7 @@ abstract class Category extends BaseCategory
         return AboutData::create()
             ->setName('SEO')
             ->setDescription('Provisioning category + providers for creating and logging into SEO services')
-            ->setIcon('chart-line');
+            ->setIcon('chart line');
     }
 
     /**
