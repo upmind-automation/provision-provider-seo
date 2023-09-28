@@ -16,6 +16,7 @@ use Upmind\ProvisionProviders\Seo\Data\CreateResult;
 use Upmind\ProvisionProviders\Seo\Data\EmptyResult;
 use Upmind\ProvisionProviders\Seo\Data\LoginResult;
 use Upmind\ProvisionProviders\Seo\Data\AccountIdentifierParams;
+use Upmind\ProvisionProviders\Seo\Data\ChangePackageParams;
 use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Data\Configuration;
 use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed;
 use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\ResponseHandlers\CreateAccountResponseHandler;
@@ -59,6 +60,11 @@ class Provider extends Category implements ProviderInterface
             ->setDomain($domainName)
             ->setPackageIdentifier($productKey)
             ->setMessage('Account created');
+    }
+
+    public function changePackage(ChangePackageParams $params): EmptyResult
+    {
+        throw $this->errorResult('Operation not supported');
     }
 
     public function login(AccountIdentifierParams $params): LoginResult

@@ -7,6 +7,7 @@ namespace Upmind\ProvisionProviders\Seo;
 use Upmind\ProvisionBase\Provider\BaseCategory;
 use Upmind\ProvisionBase\Provider\DataSet\AboutData;
 use Upmind\ProvisionProviders\Seo\Data\AccountIdentifierParams;
+use Upmind\ProvisionProviders\Seo\Data\ChangePackageParams;
 use Upmind\ProvisionProviders\Seo\Data\CreateParams;
 use Upmind\ProvisionProviders\Seo\Data\CreateResult;
 use Upmind\ProvisionProviders\Seo\Data\EmptyResult;
@@ -37,6 +38,11 @@ abstract class Category extends BaseCategory
      * Obtain a signed login URL for the service that the system client can redirect to.
      */
     abstract public function login(AccountIdentifierParams $params): LoginResult;
+
+    /**
+     * Change the package of an existing account (i.e., an upgrade/downgrade).
+     */
+    abstract public function changePackage(ChangePackageParams $params): EmptyResult;
 
     /**
      * Suspend an account.
