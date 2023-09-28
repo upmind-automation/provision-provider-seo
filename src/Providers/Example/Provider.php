@@ -9,6 +9,7 @@ use Upmind\ProvisionBase\Provider\Contract\ProviderInterface;
 use Upmind\ProvisionBase\Provider\DataSet\AboutData;
 use Upmind\ProvisionProviders\Seo\Category;
 use Upmind\ProvisionProviders\Seo\Data\AccountIdentifierParams;
+use Upmind\ProvisionProviders\Seo\Data\ChangePackageParams;
 use Upmind\ProvisionProviders\Seo\Data\CreateParams;
 use Upmind\ProvisionProviders\Seo\Data\CreateResult;
 use Upmind\ProvisionProviders\Seo\Data\EmptyResult;
@@ -43,6 +44,14 @@ class Provider extends Category implements ProviderInterface
      * @inheritDoc
      */
     public function create(CreateParams $params): CreateResult
+    {
+        throw $this->errorResult('Not Implemented');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function changePackage(ChangePackageParams $params): EmptyResult
     {
         throw $this->errorResult('Not Implemented');
     }
