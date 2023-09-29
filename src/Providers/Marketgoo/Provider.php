@@ -71,8 +71,8 @@ class Provider extends Category implements ProviderInterface
         try {
             $this->upgradeAccount($params->username, $params->package_identifier);
         } catch (OperationFailed $e) {
-            if (Str::contains($e->getMessage(), 'already suspended')) {
-                return EmptyResult::create()->setMessage('Invalid product');
+            if (Str::contains($e->getMessage(), 'product token')) {
+                return EmptyResult::create()->setMessage('Invalid product token');
             }
 
             throw $e;
