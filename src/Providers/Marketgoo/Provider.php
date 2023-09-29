@@ -7,7 +7,6 @@ namespace Upmind\ProvisionProviders\Seo\Providers\Marketgoo;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Str;
-use Upmind\ProvisionBase\Helper;
 use Upmind\ProvisionProviders\Seo\Category;
 use Upmind\ProvisionBase\Provider\Contract\ProviderInterface;
 use Upmind\ProvisionBase\Provider\DataSet\AboutData;
@@ -62,14 +61,24 @@ class Provider extends Category implements ProviderInterface
             ->setMessage('Account created');
     }
 
-    public function changePackage(ChangePackageParams $params): EmptyResult
-    {
-        throw $this->errorResult('Operation not supported');
-    }
-
     public function login(AccountIdentifierParams $params): LoginResult
     {
         return LoginResult::create()->setUrl($this->getLoginUrl($params->username));
+    }
+
+    public function changePackage(ChangePackageParams $params): EmptyResult
+    {
+        try {
+            $this->upgradeAccount($params->username, $params->package_identifier);
+        } catch (OperationFailed $e) {
+            if (Str::contains($e->getMessage(), 'product token')) {
+                return EmptyResult::create()->setMessage('Invalid product token');
+            }
+
+            throw $e;
+        }
+
+        return EmptyResult::create()->setMessage('Account updated');
     }
 
     public function suspend(AccountIdentifierParams $params): EmptyResult
@@ -124,6 +133,14 @@ class Provider extends Category implements ProviderInterface
         ]);
     }
 
+    protected function getLoginUrl(string $username): string
+    {
+        // get 5-minute ttl sso link
+        $response = $this->client()->get(sprintf('accounts/%s/login?expires=%s', $username, 5));
+        $handler = new LoginResponseHandler($response);
+        return $handler->getLoginUrl();
+    }
+
     private function createAccount(
         string $domainName,
         string $productKey,
@@ -141,7 +158,6 @@ class Provider extends Category implements ProviderInterface
                         'name' => $name,
                         'email' => $email,
                         'promo' => $promoCode,
-                        'password' => Helper::generateStrictPassword(15, true, true, true)
                     ],
                 ],
             ],
@@ -151,12 +167,22 @@ class Provider extends Category implements ProviderInterface
         return $handler->getAccountIdentifier('create');
     }
 
-    protected function getLoginUrl(string $username): string
+    private function upgradeAccount(string $accountId, string $productKey): void
     {
-        // get 5-minute ttl sso link
-        $response = $this->client()->get(sprintf('accounts/%s/login?expires=%s', $username, 5));
-        $handler = new LoginResponseHandler($response);
-        return $handler->getLoginUrl();
+        $response = $this->client()->patch("accounts/{$accountId}/upgrade", [
+            RequestOptions::FORM_PARAMS => [
+                'data' => [
+                    'type' => 'account',
+                    'id' => $accountId,
+                    'attributes' => [
+                        'product' => $productKey,
+                        'force' => true,
+                    ],
+                ],
+            ],
+        ]);
+        $handler = new ResponseHandler($response);
+        $handler->assertSuccess('upgrade');
     }
 
     private function suspendAccount(string $accountId): void
