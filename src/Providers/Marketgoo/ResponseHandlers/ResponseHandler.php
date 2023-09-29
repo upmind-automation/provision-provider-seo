@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Upmind\ProvisionProviders\Seo\Providers\Marketgoo\ResponseHandlers;
 
-use Psr\Http\Message\ResponseInterface;
 use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\CannotParseResponse;
 use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed;
 
