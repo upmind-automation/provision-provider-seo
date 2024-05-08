@@ -34,7 +34,7 @@ static-analysis:
 	docker compose exec app ./vendor/bin/phpstan analyse --memory-limit=1G
 
 coding-standards:
-	docker compose exec app php ./bin/php-cs-fixer fix --config=./.php-cs-fixer.dist.php
+	docker compose exec app php ./bin/php-cs-fixer-v3.phar fix --config=./.php-cs-fixer.dist.php
 
 # Start the dev environment
 start-containers:
