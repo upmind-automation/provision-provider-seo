@@ -10,7 +10,7 @@ use Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Provider as MarketgooProvi
 
 class LaravelServiceProvider extends ProvisionServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->bindCategory('seo', Category::class);
 

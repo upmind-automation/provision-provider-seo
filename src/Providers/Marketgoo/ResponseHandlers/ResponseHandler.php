@@ -22,16 +22,12 @@ class ResponseHandler extends AbstractHandler
                 switch ($this->response->getStatusCode()) {
                     case 400:
                         throw new CannotParseResponse($this->parseError('Invalid parameters'));
-                        break;
                     case 403:
                         throw new CannotParseResponse($this->parseError('API authentication not valid!'));
-                        break;
                     case 404:
                         throw new CannotParseResponse($this->parseError('Account not found!'));
-                        break;
                     case 409:
                         throw new CannotParseResponse($this->parseError('Conflict!'));
-                        break;
                     default:
                         throw new CannotParseResponse($this->parseError("Failed to {$name} account"));
                 }
