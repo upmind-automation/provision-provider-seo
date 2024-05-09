@@ -60,6 +60,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
  - [Harry Lewis](https://github.com/uphlewis)
  - [Óscar J. Baeza](https://github.com/ojbaeza)
+ - [Roussetos Karafyllakis](https://github.com/RoussKS)
  - [All Contributors](../../contributors)
 
 ## License
