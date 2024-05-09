@@ -29,7 +29,7 @@ abstract class AbstractHandler
     /**
      * Parsed response body data.
      *
-     * @var array|null $data
+     * @var array<string, mixed>|null $data
      */
     protected $data;
 
