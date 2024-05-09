@@ -123,7 +123,7 @@ class Provider extends Category implements ProviderInterface
 
         return new Client([
             'base_uri' => rtrim($apiUrl, '/') . '/api/',
-            'handler' => $this->getGuzzleHandlerStack(!!$this->configuration->debug),
+            'handler' => $this->getGuzzleHandlerStack(),
             RequestOptions::HTTP_ERRORS => false,
             RequestOptions::HEADERS => [
                 'Accept' => 'application/vnd.marketgoo.api+json',
