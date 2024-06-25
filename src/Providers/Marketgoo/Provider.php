@@ -42,6 +42,10 @@ class Provider extends Category implements ProviderInterface
         $this->configuration = $configuration;
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed
+     */
     public function create(CreateParams $params): CreateResult
     {
         $domainName = $params->domain;
@@ -61,11 +65,19 @@ class Provider extends Category implements ProviderInterface
             ->setMessage('Account created');
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed
+     */
     public function login(AccountIdentifierParams $params): LoginResult
     {
         return LoginResult::create()->setUrl($this->getLoginUrl($params->username));
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed
+     */
     public function changePackage(ChangePackageParams $params): EmptyResult
     {
         try {
@@ -81,6 +93,10 @@ class Provider extends Category implements ProviderInterface
         return EmptyResult::create()->setMessage('Account updated');
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed
+     */
     public function suspend(AccountIdentifierParams $params): EmptyResult
     {
         try {
@@ -96,6 +112,10 @@ class Provider extends Category implements ProviderInterface
         return EmptyResult::create()->setMessage('Account suspended');
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed
+     */
     public function unsuspend(AccountIdentifierParams $params): EmptyResult
     {
         try {
@@ -111,6 +131,10 @@ class Provider extends Category implements ProviderInterface
         return EmptyResult::create()->setMessage('Account unsuspended');
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed
+     */
     public function terminate(AccountIdentifierParams $params): EmptyResult
     {
         $this->deleteAccount($params->username);
@@ -133,6 +157,10 @@ class Provider extends Category implements ProviderInterface
         ]);
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed
+     */
     protected function getLoginUrl(string $username): string
     {
         // get 5-minute ttl sso link
@@ -141,6 +169,10 @@ class Provider extends Category implements ProviderInterface
         return $handler->getLoginUrl();
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed
+     */
     private function createAccount(
         string $domainName,
         string $productKey,
@@ -167,6 +199,10 @@ class Provider extends Category implements ProviderInterface
         return $handler->getAccountIdentifier('create');
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed
+     */
     private function upgradeAccount(string $accountId, string $productKey): void
     {
         $response = $this->client()->patch("accounts/{$accountId}/upgrade", [
@@ -185,6 +221,10 @@ class Provider extends Category implements ProviderInterface
         $handler->assertSuccess('upgrade');
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed
+     */
     private function suspendAccount(string $accountId): void
     {
         $response = $this->client()->patch("accounts/{$accountId}/suspend");
@@ -192,6 +232,10 @@ class Provider extends Category implements ProviderInterface
         $handler->assertSuccess('suspend');
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed
+     */
     private function resumeAccount(string $accountId): void
     {
         $response = $this->client()->patch("accounts/{$accountId}/resume");
@@ -199,6 +243,10 @@ class Provider extends Category implements ProviderInterface
         $handler->assertSuccess('resume');
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Upmind\ProvisionProviders\Seo\Providers\Marketgoo\Exceptions\OperationFailed
+     */
     private function deleteAccount(string $accountId): void
     {
         $response = $this->client()->delete("accounts/{$accountId}");
